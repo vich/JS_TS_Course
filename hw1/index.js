@@ -9,10 +9,10 @@ function IsDiv5(number){
 
 function hw1(start, end)
 {
-    for (let i = start; i < end; i++) {
+    for (let i = start; i <= end; i++) {
 
-        isDiv3 = IsDiv3(i);
-        isDiv5 = IsDiv5(i);
+        let isDiv3 = IsDiv3(i);
+        let isDiv5 = IsDiv5(i);
 
         if(isDiv3 && isDiv5)
             console.log(`${i} FizzBuzz`);
