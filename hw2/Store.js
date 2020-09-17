@@ -11,31 +11,12 @@ export class Store {
 
 
     addOrder(customerId, ...productsIds){
-        let validFlag = true;
-        //validate customer
-        if(!this.customers.includes(customerId)){
-            console.log(`Fails, invalid customer ${customerId}`);
-            validFlag = false;
-        }
-
-        //validate productsIds
-        productsIds.forEach((id)=>{
-            if(this.products.includes(id)){
-                if(!(this.products["id"].itemsInStock > 0)){
-                    console.log(`Fails, missing items of productId ${id}`);
-                    validFlag = false;
-                }
-            }
-            else{
-                console.log(`Fails, invalid productId: ${id}`);
-                validFlag = false;
-            }
-
-        });
+        let validFlag = this.validateOrderParams(customerId, productsIds);
 
         if(validFlag){
             productsIds.forEach((id) => {
-                --this.products["id"].itemsInStock;
+                let product = this.products.find(p=>p.id === productId);
+                --product.itemsInStock;
             });
             
             let newOrder = new Order(customerId, productsIds);
@@ -46,6 +27,33 @@ export class Store {
     }
 
 
+    validateOrderParams(customerId, productsIds) {
+        let validFlag = true;
+        //validate customer
+        if (!this.customers.find(c => c.id === customerId)) {
+            console.log(`Fails, invalid customer ${customerId}`);
+            validFlag = false;
+        }
+
+        //validate productsIds
+        productsIds.forEach((id) => {
+            let product = this.products.find(p => p.id === productId);
+            if (product) {
+                if (!(product.itemsInStock > 0)) {
+                    console.log(`Fails, missing items of productId ${id}`);
+                    validFlag = false;
+                }
+            }
+            else {
+                console.log(`Fails, invalid productId: ${id}`);
+                validFlag = false;
+            }
+
+        });
+        return validFlag;
+    }
+
+    
     printOrders(){
 
         console.log(`orders contains ${ this.orders.length} rows`);
