@@ -12,11 +12,11 @@ function initStore(){
         new Product(7,"Watermelon", 0)];
 
     const customers = [new Customer({id: 100, name:"Avraham", address:"NYC"}),
-        new Customer({id: 101, name:"Yaron", address:"Tel-Aviv"}),
-        new Customer({id: 102, name:"Yigal", address:"Yokneam"}),
-        new Customer({id: 103, name:"Nadav", address:"Akko"}),
-        new Customer({id: 104, name:"Sigal", address:"Eilat"}),
-        new Customer({id: 105, name:"Rivka", address:"Jerusalem"})];
+        new Customer(101, "Yaron", "Tel-Aviv"),
+        new Customer(102, "Yigal", "Yokneam"),
+        new Customer(103, "Nadav", "Akko"),
+        new Customer(104, "Sigal", "Eilat"),
+        new Customer(105, "Rivka", "Jerusalem")];
 
     console.log("Store initialized...");
     return new Store(products, customers, []);
@@ -37,7 +37,7 @@ function loadStoreData(storeInJson){
 
 let store = initStore();
 store.notify()
-store.addOrder(106, 1,2,3);
+store.addOrder(102, 1,2,3);
 let storeStateInJson = saveStoreState(store);
 initStore();
 loadStoreData(storeStateInJson);
