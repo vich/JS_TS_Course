@@ -1,5 +1,6 @@
 import {Order} from "./Order.js";
 
+const NOTIFY_INTERVAL = 10000;
 export class Store {
 
     constructor(products, customers, orders) {
@@ -12,14 +13,14 @@ export class Store {
     addOrder(customerId, ...productsIds){
         let validFlag = true;
         //validate customer
-        if(!this.customers.find(customerId)){
+        if(!this.customers.includes(customerId)){
             console.log(`Fails, invalid customer ${customerId}`);
             validFlag = false;
         }
 
         //validate productsIds
         productsIds.forEach((id)=>{
-            if(this.products.contains(id)){
+            if(this.products.includes(id)){
                 if(!(this.products["id"].itemsInStock > 0)){
                     console.log(`Fails, missing items of productId ${id}`);
                     validFlag = false;
@@ -38,14 +39,16 @@ export class Store {
             });
             
             let newOrder = new Order(customerId, productsIds);
+            this.printOrders();
             this.orders.push(newOrder);
+            this.printOrders();
         }
     }
 
 
     printOrders(){
 
-        console.log(`orders contains ${ this.orders.length} row`);
+        console.log(`orders contains ${ this.orders.length} rows`);
         for (let i = 0; i < this.orders.length; i++){
             let order = this.orders[i];
             console.log(`Order (${i}) - ${order}`);
@@ -72,7 +75,7 @@ export class Store {
         setInterval(()=> {
             let productsOutOfStock = this.products.filter(product => !product.itemsInStock);
             console.log(`Out of stock products: ${JSON.stringify(productsOutOfStock)}`);
-        }, 10000);
+        }, NOTIFY_INTERVAL);
     }
 
 }
