@@ -1,6 +1,6 @@
-import {Order} from "./Order";
+import {Order} from "./Order.js";
 
-class Store {
+export class Store {
 
     constructor(products, customers, orders) {
         this.products = products;
@@ -12,7 +12,7 @@ class Store {
     addOrder(customerId, ...productsIds){
         let validFlag = true;
         //validate customer
-        if(!this.customers.contains(customerId)){
+        if(!this.customers.find(customerId)){
             console.log(`Fails, invalid customer ${customerId}`);
             validFlag = false;
         }
