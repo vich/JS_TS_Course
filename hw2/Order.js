@@ -5,6 +5,6 @@ export class Order {
     }
 
     toString(){
-        return `customerId=${this.customerId}, productId=${this.productIds}`;
+        return `customerId=${this.customerId}, productsIds=${this.productIds}`;
     }
 }
