@@ -1,6 +1,3 @@
-
-import {Product} from "./Product";
-import {Customer} from "./Customer";
 import {Order} from "./Order";
 
 class Store {
@@ -12,7 +9,7 @@ class Store {
     }
 
 
-    addOrder(customerId, ...productIds){
+    addOrder(customerId, ...productsIds){
         let validFlag = true;
         //validate customer
         if(!this.customers.contains(customerId)){
@@ -21,7 +18,7 @@ class Store {
         }
 
         //validate productsIds
-        productIds.forEach((id)=>{
+        productsIds.forEach((id)=>{
             if(this.products.contains(id)){
                 if(!(this.products["id"].itemsInStock > 0)){
                     console.log(`Fails, missing items of productId ${id}`);
@@ -36,10 +33,12 @@ class Store {
         });
 
         if(validFlag){
-            productIds.forEach((id) => {
-                this.orders["customerId"].push(id);
+            productsIds.forEach((id) => {
                 --this.products["id"].itemsInStock;
             });
+            
+            let newOrder = new Order(customerId, productsIds);
+            this.orders.push(newOrder);
         }
     }
 
