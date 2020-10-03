@@ -10,10 +10,16 @@ export class GameOfLife{
         this.#columons = columons;
         
         if(!board){
-            board = new Array(this.#rows).fill(0).map(() => new Array(this.#columons).fill(0));
+            board = this.#buildRandomBoard();
         }
         
         this.initBaord(board);
+    }
+
+    #buildRandomBoard(){
+        return new Array(this.#columons).fill(null)
+          .map(() => new Array(this.#rows).fill(null)
+            .map(() => Math.floor(Math.random() * 2)));
     }
 
     initBaord(board){
