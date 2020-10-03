@@ -9,6 +9,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 800;
 const board = null; //null for random
+const size = 20;
 const cols = canvas.width / 40;
 const rows = canvas.height / 40;
 
@@ -25,13 +26,13 @@ function nextStep()
         
         for (let col = 0; col < grid.length; col++) {
             for (let row = 0; row < grid[col].length; row++) {
-            const cell = grid[col][row];
+                const cell = grid[col][row];
 
-            this.ctx.beginPath();
-            this.ctx.rect(col * this.size, row * this.size, this.size, this.size);
-            this.ctx.fillStyle = cell ? 'red' : 'white';
-            this.ctx.fill();
-            this.ctx.stroke();
+                ctx.beginPath();
+                ctx.rect(col * size, row * size, size, size);
+                ctx.fillStyle = cell ? 'red' : 'white';
+                ctx.fill();
+                ctx.stroke();
             }
         }    
     });
