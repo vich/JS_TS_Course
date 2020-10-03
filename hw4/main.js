@@ -8,7 +8,7 @@ const ctx = canvas.getContext('2d');
 
 canvas.width = 800;
 canvas.height = 800;
-const board = null; //null for random
+const board = null; //null for random board
 const size = 20;
 const cols = canvas.width / 40;
 const rows = canvas.height / 40;
@@ -27,7 +27,6 @@ function nextStep()
         for (let col = 0; col < grid.length; col++) {
             for (let row = 0; row < grid[col].length; row++) {
                 const cell = grid[col][row];
-
                 ctx.beginPath();
                 ctx.rect(col * size, row * size, size, size);
                 ctx.fillStyle = cell ? 'red' : 'white';
