@@ -32,13 +32,13 @@ export class GameOfLife{
         //foreach cell 
         for (let y = 0; y < this.#rows-1; y++) {
             for (let x = 0; x < this.#columons-1; x++) {
-                let state = this.#previosBaord[y][x];
+                const state = this.#previosBaord[y][x];
 
                 //check nighabores
-                let alive_count = this.numberOfNighabore(y, x);
+                const alive_count = this.numberOfNighabore(y, x);
 
                 //take action and update current board
-                let new_state = this.calculateNewState(state, alive_count);
+                const new_state = this.calculateNewState(state, alive_count);
                 this.#currentBaord[y][x] = new_state;
             }        
         }
@@ -49,14 +49,13 @@ export class GameOfLife{
 
         if(y>=0 && y<=this.#rows-1 && x>=0 && x<=this.#columons-1){ //validation
         
-              let state = this.#previosBaord[y][x];
               // Calculate above/below/left/right row/column values
-              let row_above = (y-1 >= 0) ? y-1 : null;
-              let row_below = (y+1 <= this.#rows-1) ? y+1 : null;
-              let column_left = (x-1 >= 0) ? x-1 : null;
-              let column_right = (x+1 <= this.#columons-1) ? x+1 : null;
+              const row_above = (y-1 >= 0) ? y-1 : null;
+              const row_below = (y+1 <= this.#rows-1) ? y+1 : null;
+              const column_left = (x-1 >= 0) ? x-1 : null;
+              const column_right = (x+1 <= this.#columons-1) ? x+1 : null;
   
-              let neighbours = {
+              const neighbours = {
                 top_left: this.#previosBaord[row_above]?.[column_left],
                 top_center: this.#previosBaord[row_above]?.[x],
                 top_right: this.#previosBaord[row_above]?.[column_right],

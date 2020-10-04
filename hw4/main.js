@@ -1,7 +1,7 @@
 import {GameOfLife} from './gameOfLife.js';
 
 
-var nextStepButton = document.getElementById('nextStepButton');
+const nextStepButton = document.getElementById('nextStepButton');
 nextStepButton.onclick = function(){nextStep()};
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -13,14 +13,14 @@ const size = 20;
 const cols = canvas.width / 40;
 const rows = canvas.height / 40;
 
-let gameOfLife = new GameOfLife(rows, cols, board);
+const gameOfLife = new GameOfLife(rows, cols, board);
 nextStep();
 
 
 function nextStep()
 {
     gameOfLife.step();
-    var grid = gameOfLife.board();
+    const grid = gameOfLife.board();
 
     requestAnimationFrame(function(){
         
