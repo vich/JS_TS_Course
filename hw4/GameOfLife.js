@@ -93,6 +93,7 @@ export class GameOfLife{
                 new_state = true;
             }
         }
+        return new_state;
     }
 
     board() {
