@@ -30,8 +30,8 @@ export class GameOfLife{
         this.#previosBaord = this.#currentBaord;
         
         //foreach cell 
-        for (y = 0; y < this.#rows-1; y++) {
-            for (x = 0; x < this.#columons-1; x++) {
+        for (let y = 0; y < this.#rows-1; y++) {
+            for (let x = 0; x < this.#columons-1; x++) {
                 let state = this.#previosBaord[y][x];
 
                 //check nighabores
@@ -47,24 +47,24 @@ export class GameOfLife{
     numberOfNighabore(y, x) {
         let alive_count = 0;
 
-        if(y>=0 && y<=this.#rows && x>=0 && x<=this.#columons){ //validation
+        if(y>=0 && y<=this.#rows-1 && x>=0 && x<=this.#columons-1){ //validation
         
               let state = this.#previosBaord[y][x];
               // Calculate above/below/left/right row/column values
               let row_above = (y-1 >= 0) ? y-1 : null;
-              let row_below = (y+1 <= length_y-1) ? y+1 : null;
+              let row_below = (y+1 <= this.#rows-1) ? y+1 : null;
               let column_left = (x-1 >= 0) ? x-1 : null;
-              let column_right = (x+1 <= length_x-1) ? x+1 : null;
+              let column_right = (x+1 <= this.#columons-1) ? x+1 : null;
   
               let neighbours = {
-                top_left: this.#previosBaord[row_above][column_left]?.clone(),
-                top_center: this.#previosBaord[row_above][x]?.clone(),
-                top_right: this.#previosBaord[row_above][column_right]?.clone(),
-                left: this.#previosBaord[y][column_left]?.clone(),
-                right: this.#previosBaord[y][column_right]?.clone(),
-                bottom_left: this.#previosBaord[row_below][column_left]?.clone(),
-                bottom_center: this.#previosBaord[row_below][x]?.clone(),
-                bottom_right: this.#previosBaord[row_below][column_right]?.clone()
+                top_left: this.#previosBaord[row_above]?.[column_left],
+                top_center: this.#previosBaord[row_above]?.[x],
+                top_right: this.#previosBaord[row_above]?.[column_right],
+                left: this.#previosBaord[y]?.[column_left],
+                right: this.#previosBaord[y]?.[column_right],
+                bottom_left: this.#previosBaord[row_below]?.[column_left],
+                bottom_center: this.#previosBaord[row_below]?.[x],
+                bottom_right: this.#previosBaord[row_below]?.[column_right]
               };
   
               for (var neighbour in neighbours) {
