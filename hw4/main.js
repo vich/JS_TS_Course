@@ -20,7 +20,7 @@ nextStep();
 function nextStep()
 {
     gameOfLife.step();
-    var grid = gameOfLife.board;
+    var grid = gameOfLife.board();
 
     requestAnimationFrame(function(){
         
@@ -29,7 +29,7 @@ function nextStep()
                 const cell = grid[col][row];
                 ctx.beginPath();
                 ctx.rect(col * size, row * size, size, size);
-                ctx.fillStyle = cell ? 'red' : 'white';
+                ctx.fillStyle = cell ? 'green' : 'white';
                 ctx.fill();
                 ctx.stroke();
             }
