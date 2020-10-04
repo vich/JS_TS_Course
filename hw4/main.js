@@ -3,6 +3,8 @@ import {GameOfLife} from './gameOfLife.js';
 
 const nextStepButton = document.getElementById('nextStepButton');
 nextStepButton.onclick = function(){nextStep()};
+const autoButton = document.getElementById('autoButton');
+autoButton.onclick = function(){autoPlay()};
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -16,6 +18,11 @@ const rows = canvas.height / 40;
 const gameOfLife = new GameOfLife(rows, cols, board);
 nextStep();
 
+function autoPlay(){
+    setInterval(()=>{
+        nextStep();
+    }, 250);
+}
 
 function nextStep()
 {
