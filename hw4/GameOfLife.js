@@ -30,12 +30,12 @@ export class GameOfLife{
         this.#previosBaord = this.#currentBaord;
         
         //foreach cell 
-        for (y = 0; y < this.#rows; y++) {
-            for (x = 0; x < this.#columons; x++) {
+        for (y = 0; y < this.#rows-1; y++) {
+            for (x = 0; x < this.#columons-1; x++) {
                 let state = this.#previosBaord[y][x];
 
                 //check nighabores
-                let alive_count = numberOfNighabore(y, x);
+                let alive_count = this.numberOfNighabore(y, x);
 
                 //take action and update current board
                 let new_state = this.calculateNewState(state, alive_count);
